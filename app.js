@@ -33,3 +33,36 @@ async function loadCrops() {
     cropList.appendChild(li);
   });
 }
+
+
+
+
+
+// server/app.js
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/farmconnect', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+// Middleware
+app.use(bodyParser.json());
+
+// Import Routes
+const farmerRoutes = require('./routes/farmers');
+const buyerRoutes = require('./routes/buyers');
+
+// Use Routes
+app.use('/api/farmers', farmerRoutes);
+app.use('/api/buyers', buyerRoutes);
+
+// Listen on port 3000
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
