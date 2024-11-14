@@ -1,122 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FarmConnect - Connecting Farmers & Buyers</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriConnect - Connecting Farmers and Buyers</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">FarmConnect</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
+  <!-- Navigation Bar -->
+  <header>
+    <h1>AgriConnect</h1>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#farmers-dashboard">Farmers Dashboard</a>
+      <a href="#buyers-dashboard">Buyers Dashboard</a>
+      <a href="#about">About Us</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <h2>Connecting Farmers with Buyers Directly</h2>
+    <p>Fair, transparent, and efficient trade for everyone.</p>
+    <div class="cta-buttons">
+      <button onclick="showSection('farmers-dashboard')">Join as a Farmer</button>
+      <button onclick="showSection('buyers-dashboard')">Join as a Buyer</button>
     </div>
-</nav>
+  </section>
 
-<!-- Hero Section -->
-<header class="hero-section">
-    <div class="container text-center text-white">
-        <h1>Connecting Farmers with Buyers Directly for Fair and Transparent Trade</h1>
-        <p>Join FarmConnect and access real-time pricing, market trends, and secure transactions.</p>
-        <a href="#" class="btn btn-primary btn-lg mr-2">Join as a Farmer</a>
-        <a href="#" class="btn btn-secondary btn-lg">Join as a Buyer</a>
+  <!-- Features Section -->
+  <section id="features">
+    <h3>Features</h3>
+    <div class="feature">
+      <h4>Real-time Pricing</h4>
+      <p>Access live prices for various crops, ensuring fair pricing for all.</p>
     </div>
-</header>
-
-<!-- Features Section -->
-<section id="features" class="features py-5">
-    <div class="container text-center">
-        <h2>Features</h2>
-        <div class="row">
-            <div class="col-md-3">
-                <i class="icon icon-price"></i>
-                <h4>Real-time Pricing</h4>
-                <p>Get up-to-date prices for your crops.</p>
-            </div>
-            <div class="col-md-3">
-                <i class="icon icon-market"></i>
-                <h4>Market Trends</h4>
-                <p>Access market demand insights to plan your sales.</p>
-            </div>
-            <div class="col-md-3">
-                <i class="icon icon-secure"></i>
-                <h4>Secure Transactions</h4>
-                <p>Trade confidently with secure payment options.</p>
-            </div>
-            <div class="col-md-3">
-                <i class="icon icon-verified"></i>
-                <h4>Verified Buyers</h4>
-                <p>Connect with trusted buyers across the country.</p>
-            </div>
-        </div>
+    <div class="feature">
+      <h4>Market Demand Trends</h4>
+      <p>View current demand trends to understand market needs.</p>
     </div>
-</section>
-
-<!-- Testimonials Section -->
-<section class="testimonials bg-light py-5">
-    <div class="container">
-        <h2 class="text-center">What Our Users Say</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <blockquote>
-                    <p>"FarmConnect helped me sell my crops at a fair price directly to buyers."</p>
-                    <footer>- Ramesh, Farmer</footer>
-                </blockquote>
-            </div>
-            <div class="col-md-6">
-                <blockquote>
-                    <p>"This platform has simplified sourcing fresh produce for my business."</p>
-                    <footer>- Priya, Buyer</footer>
-                </blockquote>
-            </div>
-        </div>
+    <div class="feature">
+      <h4>Secure Transactions</h4>
+      <p>Our platform ensures safe and secure transactions for both parties.</p>
     </div>
-</section>
+  </section>
 
-<!-- About Us Section -->
-<section id="about" class="about py-5">
-    <div class="container text-center">
-        <h2>About Us</h2>
-        <p>FarmConnect aims to support sustainable agriculture by connecting farmers and buyers directly, ensuring fair pricing and transparency.</p>
-        <p>Our mission is to promote fair trade and reduce the need for intermediaries in the agricultural industry.</p>
-    </div>
-</section>
+  <!-- Farmers Dashboard -->
+  <section id="farmers-dashboard" class="dashboard">
+    <h3>Farmers' Dashboard</h3>
+    <p>Welcome to the Farmers Dashboard. Here you can see real-time price data, post new crops, and analyze market trends.</p>
+    <button onclick="addCropListing()">Add New Crop Listing</button>
+    <div id="crop-listings"></div>
+  </section>
 
-<!-- Blog Section -->
-<section id="blog" class="blog bg-light py-5">
-    <div class="container text-center">
-        <h2>Blog & Resources</h2>
-        <p>Stay updated on the latest market trends, farming practices, and case studies.</p>
-    </div>
-</section>
+  <!-- Buyers Dashboard -->
+  <section id="buyers-dashboard" class="dashboard">
+    <h3>Buyers' Dashboard</h3>
+    <p>Explore available crops, browse current listings, and connect directly with farmers.</p>
+    <div id="available-crops"></div>
+  </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact py-5">
-    <div class="container text-center">
-        <h2>Contact Us</h2>
-        <p>Have questions? Reach out to us through our form or on social media.</p>
-        <a href="#" class="btn btn-primary">Contact Form</a>
-    </div>
-</section>
+  <!-- About Section -->
+  <section id="about">
+    <h3>About Us</h3>
+    <p>AgriConnect is dedicated to connecting farmers directly with buyers to promote fair and transparent trade.</p>
+  </section>
 
-<!-- Footer -->
-<footer class="footer bg-dark text-white text-center py-3">
-    <p>&copy; 2024 FarmConnect. All Rights Reserved.</p>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
