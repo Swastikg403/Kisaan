@@ -1,68 +1,43 @@
-// app.js (client-side)
+// app.js
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadCrops();
-
-  // Login form submission
-  document.getElementById('loginForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    // Sending login request to server
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-
-    const result = await response.json();
-    alert(result.message);
+// Function to show specific sections
+function showSection(sectionId) {
+  const sections = document.querySelectorAll('.dashboard');
+  sections.forEach(section => {
+    section.style.display = 'none';
   });
-});
+  document.getElementById(sectionId).style.display = 'block';
+}
 
-// Function to load crop listings
-async function loadCrops() {
-  const response = await fetch('/api/crops');
-  const crops = await response.json();
-  const cropList = document.getElementById('crop-list');
+// Dummy data for crop listings
+const crops = [
+  { name: 'Wheat', price: '20', quantity: '100 kg' },
+  { name: 'Rice', price: '15', quantity: '200 kg' },
+  { name: 'Tomatoes', price: '10', quantity: '150 kg' },
+];
 
-  crops.forEach((crop) => {
-    const li = document.createElement('li');
-    li.textContent = `${crop.name} - ${crop.price} per kg`;
-    cropList.appendChild(li);
+// Function to populate Farmers Dashboard with crop listings
+function addCropListing() {
+  const cropListDiv = document.getElementById('crop-listings');
+  cropListDiv.innerHTML = '<h4>My Crop Listings</h4>';
+  crops.forEach(crop => {
+    const cropItem = document.createElement('div');
+    cropItem.innerHTML = `<p>${crop.name} - ${crop.price} per kg - ${crop.quantity}</p>`;
+    cropListDiv.appendChild(cropItem);
   });
 }
 
+// Populate Buyers Dashboard with available crops
+function loadAvailableCrops() {
+  const availableCropsDiv = document.getElementById('available-crops');
+  crops.forEach(crop => {
+    const cropItem = document.createElement('div');
+    cropItem.innerHTML = `<p>${crop.name} - ${crop.price} per kg - ${crop.quantity}</p>`;
+    availableCropsDiv.appendChild(cropItem);
+  });
+}
 
-
-
-
-// server/app.js
-
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const app = express();
-
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/farmconnect', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-// Middleware
-app.use(bodyParser.json());
-
-// Import Routes
-const farmerRoutes = require('./routes/farmers');
-const buyerRoutes = require('./routes/buyers');
-
-// Use Routes
-app.use('/api/farmers', farmerRoutes);
-app.use('/api/buyers', buyerRoutes);
-
-// Listen on port 3000
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
-});
+// Initialize available crops on page load
+window.onload = () => {
+  loadAvailableCrops();
+};
